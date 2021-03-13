@@ -1,0 +1,1157 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+      <link rel="shortcut icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-7.0.5">
+    
+    
+      
+        <title>How to start a project - S3rius' Dev Notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.77f3fd56.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.7fa14f5b.min.css">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>:root{--md-text-font-family:"Roboto";--md-code-font-family:"Roboto Mono"}</style>
+      
+    
+    
+    
+      <link rel="stylesheet" href="../../../css/highlight_style.css">
+    
+      <link rel="stylesheet" href="../../../termynal.css">
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-to-start-a-project" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../" title="S3rius&#39; Dev Notes" class="md-header__button md-logo" aria-label="S3rius' Dev Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            S3rius' Dev Notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              How to start a project
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="md-header__options">
+      
+        <div class="md-select">
+          
+          <span class="md-header__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12.87 15.07l-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7l1.62-4.33L19.12 17h-3.24z"/></svg>
+          </span>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="/ru/" class="md-select__link">
+                    🇷🇺 Русский
+                  </a>
+                </li>
+                
+                <li class="md-select__item">
+                  <a href="/en/" class="md-select__link">
+                    🇬🇧 English
+                  </a>
+                </li>
+                
+            </ul>
+          </div>
+        </div>
+      
+    </div>
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        
+<a href="https://github.com/s3rius/obsidian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    s3rius/obsidian
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+
+
+  <li class="md-tabs__item">
+    <a href="../../" class="md-tabs__link">
+      Welcome
+    </a>
+  </li>
+
+      
+        
+  
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../DevOps/" class="md-tabs__link">
+        DevOps
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+
+
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../" class="md-tabs__link md-tabs__link--active">
+        Python
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../" title="S3rius&#39; Dev Notes" class="md-nav__button md-logo" aria-label="S3rius' Dev Notes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    S3rius' Dev Notes
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/s3rius/obsidian" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    s3rius/obsidian
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../" class="md-nav__link">
+        Welcome
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_2" type="checkbox" id="__nav_2" >
+      
+      <label class="md-nav__link" for="__nav_2">
+        DevOps
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="DevOps" data-md-level="1">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          DevOps
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DevOps/" class="md-nav__link">
+        DevOps notes
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DevOps/Docker%20envs%20separation/" class="md-nav__link">
+        Separating docker envs
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DevOps/Makefiles%20for%20dummies/" class="md-nav__link">
+        Makefiles for dummies
+      </a>
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" checked>
+      
+      <label class="md-nav__link" for="__nav_3">
+        Python
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+      <nav class="md-nav" aria-label="Python" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Python
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        Notes about Python
+      </a>
+    </li>
+  
+
+          
+            
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          How to start a project
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        How to start a project
+      </a>
+      
+        
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-deal-with-poetry" class="md-nav__link">
+    How to deal with poetry
+  </a>
+  
+    <nav class="md-nav" aria-label="How to deal with poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependency-management" class="md-nav__link">
+    Dependency management
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-run-commands" class="md-nav__link">
+    How to run commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    Versioning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyprojecttoml" class="md-nav__link">
+    pyproject.toml
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packaging-and-publishing-on-pypi" class="md-nav__link">
+    Packaging and publishing on pypi
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-deal-with-poetry" class="md-nav__link">
+    How to deal with poetry
+  </a>
+  
+    <nav class="md-nav" aria-label="How to deal with poetry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#dependency-management" class="md-nav__link">
+    Dependency management
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#how-to-run-commands" class="md-nav__link">
+    How to run commands
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#versioning" class="md-nav__link">
+    Versioning
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pyprojecttoml" class="md-nav__link">
+    pyproject.toml
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#packaging-and-publishing-on-pypi" class="md-nav__link">
+    Packaging and publishing on pypi
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                
+                <h1 id="how-to-start-a-project">How to start a project<a class="headerlink" href="#how-to-start-a-project" title="Permanent link">&para;</a></h1>
+<p>В целом, вариантов несколько. Например, можно просто хранить несколько скриптов на github и быть довольным, можно дописать к ним <code>setup.py</code> и выложиться на pypi. Но лучший способ - структурированный проект с <code>poetry</code>.</p>
+<p>Почему?</p>
+<p>Особенностей у poetry много. Сейчас расскажу про то, как использовать и что делать.</p>
+<p>Для начала создадим проект.</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">poetry new new_proj</span>
+<span data-ty>Created package new_proj in new_proj</span>
+<span data-ty="input">cd new_proj</span>
+<span data-ty></span>
+</div>
+
+<p>Данная команда сгенерирует следующую структуру:</p>
+<pre><code>new_proj
+├── new_proj
+│   └── __init__.py
+├── pyproject.toml
+├── README.rst
+└── tests
+    ├── __init__.py
+    └── test_new_proj.py
+</code></pre>
+<p>Это наш новый проект с небольшими заготовками. В целом, тут нет ничего необычного. Весь код библиотеки/проекта будет в папке с названием проекта. <code>README.rst</code> - дефолтный README. <code>pyproject.toml</code> - данные о проекте для упаковщика.</p>
+<h2 id="how-to-deal-with-poetry">How to deal with poetry<a class="headerlink" href="#how-to-deal-with-poetry" title="Permanent link">&para;</a></h2>
+<p>Вся информация есть в оф. документации тулы. Тут я расскажу про основные моменты.</p>
+<h3 id="dependency-management">Dependency management<a class="headerlink" href="#dependency-management" title="Permanent link">&para;</a></h3>
+<p>Чтобы добавить зависимость проекта достаточно выполнить</p>
+<pre><code class="language-bash">poetry add ${dependency}
+</code></pre>
+<p>Данная команда найдет последнюю нужную версию и запишет её в pyproject.toml и в poetry.lock.</p>
+<p>Для того, чтобы установить зависимость для разработки (линтеры например), достаточно добавить флаг <code>--dev</code>.</p>
+<pre><code class="language-bash">poetry add ${dependency} --dev 
+</code></pre>
+<h3 id="how-to-run-commands">How to run commands<a class="headerlink" href="#how-to-run-commands" title="Permanent link">&para;</a></h3>
+<p>При использовании virtualenv для входа в оболочку всегда надо было вводить</p>
+<pre><code class="language-bash">source venv/bin/activate
+</code></pre>
+<p>Однако с poetry это излишне. Он сам создает и менеджит виртуальные среды.
+Чтобы выполнить одиночную команду можно вызвать <code>run</code>. </p>
+<p>Например:</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">poetry install black --dev</span>
+<span data-ty>Using version ^20.8b1 for black   </span>
+<span data-ty> • Installing appdirs (1.4.4)  </span>
+<span data-ty> • Installing click (7.1.2)  </span>
+<span data-ty> • Installing mypy-extensions (0.4.3)  </span>
+<span data-ty> • Installing pathspec (0.8.1)  </span>
+<span data-ty> • Installing regex (2020.11.13)  </span>
+<span data-ty> • Installing toml (0.10.2)  </span>
+<span data-ty> • Installing typed-ast (1.4.2)  </span>
+<span data-ty> • Installing typing-extensions (3.7.4.3)  </span>
+<span data-ty> • Installing black (20.8b1)</span>
+<span data-ty="input">poetry run black .</span>
+<span data-ty>reformatted new_proj/new_proj/__init__.py</span>
+<span data-ty>reformatted new_proj/tests/test_new_proj.py</span>
+<span data-ty>All done! ✨ 🍰 ✨</span>
+<span data-ty>2 files reformatted, 1 file left unchanged.</span>
+<span data-ty></span>
+</div>
+
+<p>Для выполнения нескольких комманд подряд, можно войти в shell. Это аналог <code>source venv/bin/activate</code>.</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">poetry shell</span>
+<span data-ty>Spawning shell within /home/s3rius/.cache/pypoetry/virtualenvs/new-proj-eutP4v0O-py3.9</span>
+<span data-ty="input">black .</span>
+<span data-ty>reformatted new_proj/new_proj/__init__.py</span>
+<span data-ty>reformatted new_proj/tests/test_new_proj.py</span>
+<span data-ty>All done! ✨ 🍰 ✨</span>
+<span data-ty>2 files reformatted, 1 file left unchanged.</span>
+<span data-ty></span>
+</div>
+
+<h3 id="versioning">Versioning<a class="headerlink" href="#versioning" title="Permanent link">&para;</a></h3>
+<p>Менять версии пакета вручную больше не нужно.</p>
+<p>У poetry есть кое что для тебя.</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">poetry version patch   </span>
+<span data-ty>Bumping version from 0.1.0 to 0.1.1</span>
+<span data-ty="input">poetry version preminor</span>
+<span data-ty>Bumping version from 0.1.1 to 0.2.0-alpha.0</span>
+<span data-ty="input">poetry version minor   </span>
+<span data-ty>Bumping version from 0.2.0-alpha.0 to 0.2.0</span>
+<span data-ty="input">poetry version premajor</span>
+<span data-ty>Bumping version from 0.2.0 to 1.0.0-alpha.0</span>
+<span data-ty="input">poetry version major   </span>
+<span data-ty>Bumping version from 1.0.0-alpha.0 to 1.0.0</span>
+<span data-ty></span>
+</div>
+
+<h2 id="pyprojecttoml">pyproject.toml<a class="headerlink" href="#pyprojecttoml" title="Permanent link">&para;</a></h2>
+<p>Данный файл содержит в себе все нужные зависимости для проекта и всяческую мета-информацию.</p>
+<p>Пример pyproject.tom</p>
+<pre><code class="language-toml">[tool.poetry]
+name = &quot;new_proj&quot;
+version = &quot;0.1.0&quot;
+description = &quot;Test library for example&quot;
+readme = &quot;README.rst&quot;
+homepage = &quot;https://test_url.com/&quot;
+repository = &quot;https://github.meme/&quot;
+authors = [&quot;Pavel Kirilin &lt;win10@list.ru&gt;&quot;]
+
+[tool.poetry.dependencies]
+python = &quot;^3.8&quot;
+
+[tool.poetry.dev-dependencies]
+pytest = &quot;^6.1&quot;
+
+[build-system]
+requires = [&quot;poetry-core&gt;=1.0.0&quot;]
+build-backend = &quot;poetry.core.masonry.api&quot;
+</code></pre>
+<p>Для того чтобы устновить все зависимости требуется просто ввести</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">poetry install</span>
+<span data-ty></span>
+</div>
+
+<p>Данная команда создаст виртуальную среду сама и установит <strong>все</strong> зависимости. Включая dev-зависимости. Чтобы установить зависимости только для приложения можно добавить <code>--no-dev</code> ключ. </p>
+<h2 id="packaging-and-publishing-on-pypi">Packaging and publishing on pypi<a class="headerlink" href="#packaging-and-publishing-on-pypi" title="Permanent link">&para;</a></h2>
+<p>Теперь я вас удивлю. Всё что сейчас делалось, по большей чати нужно было для легкой упаковки. Сейчас поясню.</p>
+<p>Давайте добавим какую-нибудь функцию в проект.</p>
+<pre><code class="language-python"># new_proj/main.py
+def ab_problem(a: int, b: int) -&gt; int:
+    return a + b
+</code></pre>
+<pre><code class="language-python"># new_proj/__init.py
+from new_proj.main import ab_problem
+
+__all__ = [
+    'ab_problem'
+]
+</code></pre>
+<p>Теперь соберем проект.</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">poetry build</span>
+<span data-ty>Building new_proj (0.1.0)</span>
+<span data-ty>  - Building sdist</span>
+<span data-ty>  - Built new_proj-0.1.0.tar.gz</span>
+<span data-ty>  - Building wheel</span>
+<span data-ty>  - Built new_proj-0.1.0-py3-none-any.whl</span>
+<span data-ty></span>
+</div>
+
+<p>Та-да. Это готовый к публикации на pypi пакет. Лежит он в папке dist.</p>
+<p>Давайте проверим, что всё работает корректно.</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">pip install &quot;./dist/new_proj-0.1.0-py3-none-any.whl&quot;  </span>
+<span data-ty>Processing ./dist/new_proj-0.1.0-py3-none-any.whl</span>
+<span data-ty>Installing collected packages: new-proj</span>
+<span data-ty>Successfully installed new-proj-0.1.0</span>
+<span data-ty></span>
+<span data-ty="input">python</span>
+<span data-ty>Python 3.9.1 (default, Feb  1 2021, 04:02:33) </span>
+<span data-ty>[GCC 10.2.0] on linux</span>
+<span data-ty>Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.</span>
+<span data-ty="input">from new_proj import ab_problem</span>
+<span data-ty="input">ab_problem(1,33)</span>
+<span data-ty>34</span>
+<span data-ty></span>
+</div>
+
+<p>Как можно видеть всё работает корректно и теперь мы можем использовать наш пакет.</p>
+<p>Для публикации следует использовать:</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">poetry publish -u &quot;user&quot; -p &quot;password&quot;</span>
+<span data-ty></span>
+</div>
+
+<p>Подробнее можно почитать <a href="https://python-poetry.org/docs/cli/#publish">тут</a>.</p>
+<h1 id="configuring-project">Configuring project<a class="headerlink" href="#configuring-project" title="Permanent link">&para;</a></h1>
+<p>Конечно, такого рода конфигурация проекта всё равно никуда не годиться.
+Давайте настроим автоматический линтинг.</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">poetry add \</span>
+<span data-ty="input">  flake8 \</span>
+<span data-ty="input">  black \</span>
+<span data-ty="input">  isort \</span>
+<span data-ty="input">  mypy \</span>
+<span data-ty="input">  pre-commit \</span>
+<span data-ty="input">  yesqa \</span>
+<span data-ty="input">  autoflake \</span>
+<span data-ty="input">  wemake-python-styleguide --dev</span>
+<span data-ty="progress"></span>
+<span data-ty></span>
+</div>
+
+<p>Теперь добавим конфигурационных файлов в корень проекта.</p>
+<p><code>.mypy.ini</code> для настройки валидации типов.</p>
+<pre><code class="language-ini">[mypy]
+strict = True
+ignore_missing_imports=True
+allow_subclassing_any=True
+allow_untyped_calls=True
+pretty=True
+show_error_codes=True
+implicit_reexport=True
+allow_untyped_decorators=True
+</code></pre>
+<p><code>.isort.cfg</code> для конфигурации сортировки импортов.</p>
+<pre><code class="language-ini">[isort]
+multi_line_output = 3
+include_trailing_comma = true
+use_parentheses = true
+</code></pre>
+<p><code>.flake8</code> - конфигурация линтинга. Тут довольно много. Это игнорирование ненужных кодов ошибок, которые не особо-то и ошибки.</p>
+<pre><code class="language-ini">[flake8]
+max-complexity = 6
+inline-quotes = double
+max-line-length = 88
+extend-ignore = E203
+docstring_style=sphinx
+
+ignore =
+  ; Found `f` string
+  WPS305,
+  ; Missing docstring in public module
+  D100,
+  ; Missing docstring in magic method
+  D105,
+  ; Missing docstring in __init__
+  D107,
+  ; Found class without a base class
+  WPS306,
+  ; Missing docstring in public nested class
+  D106,
+  ; First line should be in imperative mood
+  D401,
+  ; Found `__init__.py` module with logic
+  WPS412,
+  ; Found implicit string concatenation
+  WPS326,
+  ; Found string constant over-use
+  WPS226,
+  ; Found upper-case constant in a class
+  WPS115,
+  ; Found nested function
+  WPS430,
+  ; Found using `@staticmethod`
+  WPS602,
+  ; Found method without arguments
+  WPS605,
+  ; Found overused expression
+  WPS204,
+  ; Found too many module members
+  WPS202,
+  ; Found too high module cognitive complexity
+  WPS232,
+  ; line break before binary operator
+  W503,
+  ; Found module with too many imports
+  WPS201,
+  ; Found vague import that may cause confusion: X
+  WPS347,
+  ; Inline strong start-string without end-string.
+  RST210,
+  ; subprocess call with shell=True seems safe, but may be changed in the future.
+  S602,
+  ; Starting a process with a partial executable path.
+  S607,
+  ; Consider possible security implications associated with subprocess module.
+  S404,
+  ; Found nested class
+  WPS431,
+  ; Found wrong module name
+  WPS100,
+  ; Found too many methods
+  WPS214,
+  ; Found too long ``try`` body
+  WPS229,
+  ; Found function with too much cognitive complexity
+  WPS231,
+
+  ; all init files
+  __init__.py:
+  ; ignore not used imports
+  F401,
+  ; ignore import with wildcard
+  F403,
+  ; Found wrong metadata variable
+  WPS410,
+
+per-file-ignores =
+  ; all tests
+  test_*.py,tests.py,tests_*.py,*/tests/*:
+  ; Use of assert detected
+  S101,
+
+exclude =
+  ./.git,
+  ./venv,
+  ./cached_venv,
+  ./var,
+</code></pre>
+<p><code>.pre-commit-config.yaml</code> - конфигураци хуков для запуска всех линтеров перед коммитом.</p>
+<pre><code class="language-yaml"># See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.4.0
+    hooks:
+      - id: check-ast
+      - id: trailing-whitespace
+      - id: check-toml
+      - id: end-of-file-fixer
+
+  - repo: https://github.com/asottile/add-trailing-comma
+    rev: v2.1.0
+    hooks:
+    -   id: add-trailing-comma
+
+  - repo: local
+    hooks:
+      - id: black
+        name: Format with Black
+        entry: black
+        language: system
+        types: [python]
+
+      - id: autoflake
+        name: autoflake
+        entry: autoflake
+        language: system
+        types: [ python ]
+        args: [ --in-place, --remove-all-unused-imports, --remove-duplicate-keys ]
+
+      - id: isort
+        name: isort
+        entry: isort
+        language: system
+        types: [ python ]
+
+      - id: flake8
+        name: Check with Flake8
+        entry: flake8
+        language: system
+        pass_filenames: false
+        types: [ python ]
+        args: [--count, .]
+
+      - id: mypy
+        name: Validate types with MyPy
+        entry: mypy
+        language: system
+        types: [ python ]
+
+      - id: yesqa
+        name: Remove usless noqa
+        entry: yesqa
+        language: system
+        types: [ python ]
+
+      - id: pytest
+        name: pytest
+        entry: pytest
+        language: system
+        pass_filenames: false
+        types: [ python ]
+</code></pre>
+<p>И не забываем про <code>.gitignore</code>. Его можно найти <a href="https://github.com/github/gitignore/blob/master/Python.gitignore">тут</a>.</p>
+<p>ОН НЕОБХОДИМ ЧТОБЫ pre-commit РАБОТЛ МАКСИМАЛЬНО КОРРЕКТНО.</p>
+<p>Теперь установим хуки в репозиторий.</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">git init</span>
+<span data-ty>Initialized empty Git repository in .git/</span>
+<span data-ty="input">poetry shell</span>
+<span data-ty="input">pre-commit install</span>
+<span data-ty>pre-commit installed at .git/hooks/pre-commit</span>
+<span data-ty="input">git commit</span>
+<span data-ty>... # Упадет с кучей ошибок</span>
+<span data-ty></span>
+</div>
+
+<p>Теперь поправим все возникшие проблемы.</p>
+<p>Во первых исправим тесты.</p>
+<p>В <code>tests/test_new_proj.py</code> напишем следующее:</p>
+<pre><code class="language-python">from new_proj import ab_problem
+
+
+def test_ab() -&gt; None:
+    &quot;&quot;&quot;AB problecm success case.&quot;&quot;&quot;
+    assert ab_problem(1, 2) == 3
+</code></pre>
+<p>Добавим описания в <code>__init__</code> файлы.</p>
+<p><code>tests/__init__.py</code>:</p>
+<pre><code class="language-python">&quot;&quot;&quot;Tests for new_proj.&quot;&quot;&quot;
+</code></pre>
+<p><code>new_proj/__init__.py</code>:</p>
+<pre><code class="language-python">&quot;&quot;&quot;Project for solving ab problem.&quot;&quot;&quot;
+from new_proj.main import ab_problem
+
+__all__ = [
+    &quot;ab_problem&quot;,
+]
+</code></pre>
+<p>Пофиксим основной файл проекта.</p>
+<p><code>new_proj/main.py</code>:</p>
+<pre><code class="language-python">def ab_problem(first: int, second: int) -&gt; int:
+    &quot;&quot;&quot;
+    Solve AB problem.
+
+    The function sums two integers.
+
+    :param first: a argument.
+    :param second: b argument.
+    :returns: sum.
+    &quot;&quot;&quot;
+    return first + second
+</code></pre>
+<p>Теперь вы можете сделать свой первый коммит.</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">git commit     </span>
+<span data-ty>Check python ast................Passed</span>
+<span data-ty>Trim Trailing Whitespace........Passed</span>
+<span data-ty>Check Toml......................Passed</span>
+<span data-ty>Fix End of Files................Passed</span>
+<span data-ty>Add trailing commas.............Passed</span>
+<span data-ty>Format with Black...............Passed</span>
+<span data-ty>autoflake.......................Passed</span>
+<span data-ty>isort...........................Passed</span>
+<span data-ty>Check with Flake8...............Passed</span>
+<span data-ty>Validate types with MyPy........Passed</span>
+<span data-ty>Remove usless noqa..............Passed</span>
+<span data-ty>pytest..........................Passed</span>
+<span data-ty></span>
+</div>
+
+<h1 id="creating-cli-tool">Creating CLI tool<a class="headerlink" href="#creating-cli-tool" title="Permanent link">&para;</a></h1>
+<p>А что если я хочу cli-приложение?
+Ты не представляешь насколько это просто.</p>
+<p>Пойдем модифицируем наш основной файл.</p>
+<pre><code class="language-python">import argparse
+
+
+def parse_args() -&gt; argparse.Namespace:
+    &quot;&quot;&quot;
+    Parse CLI arguments.
+
+    :returns: parsed namespace.
+    &quot;&quot;&quot;
+    parser = argparse.ArgumentParser()
+
+    parser.add_argument(&quot;a&quot;, type=int)
+    parser.add_argument(&quot;b&quot;, type=int)
+
+    return parser.parse_args()
+
+
+def ab_problem(first: int, second: int) -&gt; int:
+    &quot;&quot;&quot;
+    Solve AB problem.
+
+    The function sums two integers.
+
+    :param first: a argument.
+    :param second: b argument.
+    :returns: sum.
+    &quot;&quot;&quot;
+    return first + second
+
+
+def main() -&gt; None:
+    &quot;&quot;&quot;Main function.&quot;&quot;&quot;
+    args = parse_args()
+    print(ab_problem(args.a, args.b))  # noqa: WPS421
+
+</code></pre>
+<p>Теперь поправим pyproject.toml таким образом чтобы он создал cli для нашей функции.</p>
+<p>Добавим следующую секцию куда-нибудь в <code>pyproject.toml</code>:</p>
+<pre><code class="language-toml">[tool.poetry.scripts]
+ab_solver = &quot;new_proj.main:main&quot;
+</code></pre>
+<p>Теперь нам доступна программа <code>ab_solver</code> внутри shell.</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">poetry install</span>
+<span data-ty="input">poetry shell</span>
+<span data-ty="input">ab_solver 1 2</span>
+<span data-ty>3</span>
+<span data-ty></span>
+</div>
+
+<p>Хочешь установить? Пожалуйста.</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">poetry build</span>
+<span data-ty>Building new_proj (0.1.0)</span>
+<span data-ty>  - Building sdist</span>
+<span data-ty>  - Built new_proj-0.1.0.tar.gz</span>
+<span data-ty>  - Building wheel</span>
+<span data-ty>  - Built new_proj-0.1.0-py3-none-any.whl</span>
+<span data-ty="input">pip install &quot;./dist/new_proj-0.1.0-py3-none-any.whl&quot;</span>
+<span data-ty>Processing ./dist/new_proj-0.1.0-py3-none-any.whl</span>
+<span data-ty>Installing collected packages: new-proj</span>
+<span data-ty>Successfully installed new-proj-0.1.0</span>
+<span data-ty="input">ab_solver 1 2                                     </span>
+<span data-ty>3</span>
+<span data-ty></span>
+</div>
+
+<p>Если запаблишить проект, то у пользователя тоже установится ваша cli-программа.</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <nav class="md-footer__inner md-grid" aria-label="Footer">
+      
+        <a href="../" class="md-footer__link md-footer__link--prev" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Notes about Python
+            </div>
+          </div>
+        </a>
+      
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+        
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["search.suggest", "navigation.tabs"], "translations": {"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}, "search": "../../../assets/javascripts/workers/search.fb4a9340.min.js", "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.5cf3e710.min.js"></script>
+      
+        <script src="../../../js/highlight.min.js"></script>
+      
+        <script src="../../../js/startup.js"></script>
+      
+        <script src="../../../termynal.js"></script>
+      
+    
+  </body>
+</html>
