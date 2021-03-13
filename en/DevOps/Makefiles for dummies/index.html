@@ -457,11 +457,11 @@
 <h1 id="how-does-it-work">How does it work<a class="headerlink" href="#how-does-it-work" title="Permanent link">&para;</a></h1>
 <p>It works pretty simple.</p>
 <p>Here's an example of a <code>Makefile</code>:</p>
-<pre><code class="language-Makefile"># Сгенерируем простой файл
+<pre><code class="language-Makefile"># Generate bash file.
 test.gen:
     @echo 'echo &quot;Hi!&quot;' &gt; &quot;test.gen&quot;
 
-# Команда для запуска файла test.gen
+# Run generated file test.gen
 .PHONY: run
 run: test.gen
     sh &quot;test.gen&quot;
@@ -480,9 +480,8 @@ run: test.gen
 <p>Let's dive into it.</p>
 <h2 id="targets-dependencies">Targets dependencies<a class="headerlink" href="#targets-dependencies" title="Permanent link">&para;</a></h2>
 <p>On the line where we define our <code>run</code> target, we can see the <code>test.gen</code>
-target places right after the colon.</p>
-<p>Это зависимость данного таргета и она будет вызвана до того, как выполнится скрипт описываемого таргета. Таких зависимостей может быть много, перечисляются они чере пробел.</p>
-<p>Например:</p>
+target places right after the colon. This is a dependency of the <code>run</code> target, it fires right before executing the <code>run</code> target. Each target can have multiple dependencies, they are spearated with space.</p>
+<p>E.G.:</p>
 <pre><code class="language-Makefile">.PHONY: target1
 target1:
     echo &quot;1&quot;
@@ -495,7 +494,7 @@ target2: target1
 target3: target1 target2
     echo &quot;memes&quot;
 </code></pre>
-<p>При вызове <code>make target3</code> будет выведено:</p>
+<p>Let's call the <code>target3</code> target and see the output.</p>
 <p></p>
 <div class="termy" data-termynal>
 <span data-ty="input">make target3</span>
@@ -508,9 +507,10 @@ target3: target1 target2
 <span data-ty></span>
 </div>
 
-<p>Как можно видеть, он построил граф зависимостей и не выполнил <code>target1</code> дважды.</p>
+<p>As you can see, Makefile has built the target dependency tree and didn't call the <code>target1</code> second time. </p>
 <h2 id="hiding-commands-output">Hiding commands output<a class="headerlink" href="#hiding-commands-output" title="Permanent link">&para;</a></h2>
-<p>В предыдущем примере можно заметить, что он написал все команды в терминал. Для того, чтобы этого избежать следует добавить "@" в начало команды и она не будет напечатана.</p>
+<p>In previous example you can notice that make command printed out all shell commands for every target. You can hide the commands from the output by adding "@" at the start of a command.</p>
+<p>Like this:</p>
 <pre><code class="language-Makefile">.PHONY: target1
 target1:
     @echo &quot;1&quot;
@@ -523,7 +523,7 @@ target2: target1
 target3: target1 target2
     @echo &quot;memes&quot;
 </code></pre>
-<p>Теперь при вызое <code>make target3</code> будет показано следующее:</p>
+<p>Now you can call targets and it won't print the actual commands. Like this:</p>
 <p></p>
 <div class="termy" data-termynal>
 <span data-ty="input">make target3</span>
@@ -534,37 +534,58 @@ target3: target1 target2
 </div>
 
 <h2 id="generated-files-validation">Generated files validation<a class="headerlink" href="#generated-files-validation" title="Permanent link">&para;</a></h2>
-<p>Зачастую <code>Makefile</code> используют для компиляции С и зачастую требуется
-собрать какую-либо часть проект и пропустить сборку этой части, если эта часть уже собрана.
-Раскрою секрет, в Makefile это базовый функционал.</p>
-<p>Давайте немного поменяем первый Makefile и запустим дважды.</p>
-<pre><code class="language-Makefile"># Сгенерируем простой файл
+<p>Make files are often used for compiling C programs and sometimes you need to compile a part of a project and skip building this part if executable is already present. It's a basic functionality of Makefiles.</p>
+<p>Let's change the first <code>Makefile</code> and call the <code>run</code> target twice.</p>
+<pre><code class="language-Makefile"># Generate bash file.
 test.gen:
     echo 'echo &quot;Hi!&quot;' &gt; &quot;test.gen&quot;
 
-# Команда для запуска файла test.gen
+# Run generated file test.gen
 .PHONY: run
 run: test.gen
     sh &quot;test.gen&quot;
 </code></pre>
-<p>Теперь вызываемая команда таргета <code>test.gen</code> выводится на экран.</p>
-<p>Позапускаем.</p>
+<p>Now we can see which commands Makefile executes.</p>
+<p>Let's run it.</p>
 <p></p>
 <div class="termy" data-termynal>
 <span data-ty="input">make run  </span>
-<span data-ty>echo 'echo &quot;Hi!&quot;' &gt; &quot;test.gen&quot;  # Наша командабыла вызвана.</span>
+<span data-ty>echo 'echo &quot;Hi!&quot;' &gt; &quot;test.gen&quot;</span>
 <span data-ty>sh &quot;test.gen&quot;  </span>
 <span data-ty>Hi!  </span>
 <span data-ty="input">make run  </span>
-<span data-ty>sh &quot;test.gen&quot;  # Наша команда не вызвана.</span>
+<span data-ty>sh &quot;test.gen&quot;</span>
 <span data-ty>Hi!</span>
 <span data-ty></span>
 </div>
 
-<p>Дело в том, что названия таргетов - названия файлов, которые должны сгенерировать эти самые таргеты.
-То есть, в данном случае таргет <code>test.gen</code> должен сгенерировать файл <code>test.gen</code> по окончании выполнения. Если этот файл уже присутствует, то команда выполнена не будет. Именно поэтому у нас она не запустилась второй раз, так как в первый запуск был создан треубемый файл и его никто не удалял между запусками.</p>
-<p>А что если я вот не хочу чтобы команда создавала и проверяла файлы?
-Для этого пишут <code>.PHONY: ${target}</code>. Например у нас так объявлен таргет <code>run</code> и, даже если файл с названием <code>run</code> будет присутствовать в директории цель не будет выполняться.</p>
+<p>As you can see, second time it has skipped the run of a <code>test.gen</code> target.
+It's because name of a target is a filename and it will never execute the target if file with name equals to target name exists. That is, in that particular case the <code>test.gen</code> target have to generate the <code>test.gen</code> file during the execution, and if it's already present it doesn't update it. That's why it didn't run it for the second time.  </p>
+<p>If you don't want to have that feature you can disable it by adding <code>.PHONY: ${target}</code> somewhere.
+Like this:</p>
+<pre><code class="language-Makefile">.PHONY: test.gen
+# Generate bash file
+test.gen:
+    echo 'echo &quot;Hi!&quot;' &gt; &quot;test.gen&quot;
+
+# Run generated file test.gen
+.PHONY: run
+run: test.gen
+    sh &quot;test.gen&quot;
+</code></pre>
+<p>Now it executes <code>test.gen</code> every time it's called.</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">make run</span>
+<span data-ty>echo 'echo &quot;Hi!&quot;' &gt; &quot;test.gen&quot;</span>
+<span data-ty>sh &quot;test.gen&quot;</span>
+<span data-ty>Hi!</span>
+<span data-ty="input">make run</span>
+<span data-ty>echo 'echo &quot;Hi!&quot;' &gt; &quot;test.gen&quot;</span>
+<span data-ty>sh &quot;test.gen&quot;</span>
+<span data-ty>Hi!</span>
+<span data-ty></span>
+</div>
                 
               
               
