@@ -111,14 +111,14 @@
             <ul class="md-select__list">
               
                 <li class="md-select__item">
-                  <a href="/ru/" class="md-select__link">
-                    🇷🇺 Русский
+                  <a href="/en/" class="md-select__link">
+                    🇬🇧 English
                   </a>
                 </li>
                 
                 <li class="md-select__item">
-                  <a href="/en/" class="md-select__link">
-                    🇬🇧 English
+                  <a href="/ru/" class="md-select__link">
+                    🇷🇺 Русский
                   </a>
                 </li>
                 
@@ -432,15 +432,15 @@
       
         <li class="md-nav__item">
   <a href="#poetry" class="md-nav__link">
-    Что делать с poetry
+    Как работать с poetry
   </a>
   
-    <nav class="md-nav" aria-label="Что делать с poetry">
+    <nav class="md-nav" aria-label="Как работать с poetry">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    установка зависимостей
+    Управление зависимостями
   </a>
   
 </li>
@@ -518,15 +518,15 @@
       
         <li class="md-nav__item">
   <a href="#poetry" class="md-nav__link">
-    Что делать с poetry
+    Как работать с poetry
   </a>
   
-    <nav class="md-nav" aria-label="Что делать с poetry">
+    <nav class="md-nav" aria-label="Как работать с poetry">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    установка зависимостей
+    Управление зависимостями
   </a>
   
 </li>
@@ -600,17 +600,50 @@
     ├── __init__.py
     └── test_new_proj.py
 </code></pre>
-<p>Это наш новый проект с небольшими заготовками. В целом, тут нет ничего необычного. Весь код библиотеки/проекта будет в папке с названием проекта. <code>README.rst</code> - дефолтный README. <code>pyproject.toml</code> - данные о проекте для упаковщика.</p>
-<h2 id="poetry">Что делать с poetry<a class="headerlink" href="#poetry" title="Permanent link">&para;</a></h2>
-<p>Вся информация есть в оф. документации тулы. Тут я расскажу про основные моменты.</p>
-<h3 id="_2">установка зависимостей<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>Это наш новый проект с небольшими заготовками. В целом, тут нет ничего необычного. Весь код библиотеки/проекта будет в папке с названием проекта. <code>README.rst</code> - дефолтный README. <code>pyproject.toml</code> - мета-данные о проекте, такие как: зависимости, описание, дополнительные установочные опции и многое другое. Ты можешь прочитать побольше о <code>pyproject.toml</code> <a href="https://python-poetry.org/docs/pyproject/">тут</a>.</p>
+<h2 id="poetry">Как работать с poetry<a class="headerlink" href="#poetry" title="Permanent link">&para;</a></h2>
+<p>Вся информация есть в <a href="https://python-poetry.org/docs">официальной документации</a> poetry. Тут я расскажу про основные моменты.</p>
+<h3 id="_2">Управление зависимостями<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>Чтобы добавить зависимость проекта достаточно выполнить</p>
-<pre><code class="language-bash">poetry add ${dependency}
-</code></pre>
-<p>Данная команда найдет последнюю нужную версию и запишет её в pyproject.toml и в poetry.lock.</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">poetry add ${dependency}</span>
+<span data-ty></span>
+</div>
+
+<p>Данная команда найдет последнюю нужную версию и запишет её в <code>pyproject.toml</code> и в <code>poetry.lock</code>.</p>
 <p>Для того, чтобы установить зависимость для разработки (линтеры например), достаточно добавить флаг <code>--dev</code>.</p>
-<pre><code class="language-bash">poetry add ${dependency} --dev 
-</code></pre>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">poetry add ${dependency} --dev </span>
+<span data-ty></span>
+</div>
+
+<p>Чтобы удалить зависимость достаточно просто <code>add</code> заменить на <code>remove</code>.</p>
+<p>Примеры работы:</p>
+<p></p>
+<div class="termy" data-termynal>
+<span data-ty="input">poetry add loguru   </span>
+<span data-ty>Using version ^0.5.3 for loguru  </span>
+<span data-ty></span>
+<span data-ty>Updating dependencies  </span>
+<span data-ty>Resolving dependencies... (0.1s)  </span>
+<span data-ty></span>
+<span data-ty>Writing lock file</span>
+<span data-ty></span>
+<span data-ty>Package operations: 1 install, 0 updates, 0 removals  </span>
+<span data-ty> • Installing loguru (0.5.3)</span>
+<span data-ty="input">poetry remove loguru</span>
+<span data-ty>Updating dependencies</span>
+<span data-ty>Resolving dependencies... (0.1s)</span>
+<span data-ty></span>
+<span data-ty>Writing lock file</span>
+<span data-ty></span>
+<span data-ty>Package operations: 0 installs, 0 updates, 1 removal  </span>
+<span data-ty> • Removing loguru (0.5.3)</span>
+<span data-ty></span>
+</div>
+
 <h3 id="_3">Выполнение команд<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>При использовании virtualenv для входа в оболочку всегда надо было вводить</p>
 <pre><code class="language-bash">source venv/bin/activate
@@ -671,8 +704,8 @@
 </div>
 
 <h2 id="pyprojecttoml">pyproject.toml<a class="headerlink" href="#pyprojecttoml" title="Permanent link">&para;</a></h2>
-<p>Данный файл содержит в себе все нужные зависимости для проекта и всяческую мета-информацию.</p>
-<p>Пример pyproject.tom</p>
+<p>Как было сказано ранее, данный файл содержит в себе мета-информацию пакета.</p>
+<p>Пример <code>pyproject.toml</code></p>
 <pre><code class="language-toml">[tool.poetry]
 name = &quot;new_proj&quot;
 version = &quot;0.1.0&quot;
@@ -701,8 +734,8 @@ build-backend = &quot;poetry.core.masonry.api&quot;
 
 <p>Данная команда создаст виртуальную среду сама и установит <strong>все</strong> зависимости. Включая dev-зависимости. Чтобы установить зависимости только для приложения можно добавить <code>--no-dev</code> ключ. </p>
 <h2 id="pypi">Как паковать и публиковать на pypi<a class="headerlink" href="#pypi" title="Permanent link">&para;</a></h2>
-<p>Теперь я вас удивлю. Всё что сейчас делалось, по большей чати нужно было для легкой упаковки. Сейчас поясню.</p>
-<p>Давайте добавим какую-нибудь функцию в проект.</p>
+<p>Всё очень просто.
+Давайте добавим какую-нибудь функцию в проект.</p>
 <pre><code class="language-python"># new_proj/main.py
 def ab_problem(a: int, b: int) -&gt; int:
     return a + b
@@ -772,7 +805,8 @@ __all__ = [
 <span data-ty></span>
 </div>
 
-<p>Теперь добавим конфигурационных файлов в корень проекта.</p>
+<p>Теперь добавим конфигурационных файлов в корень проекта.
+Это мои конфигурации, которые я настроил под себя, можешь менять их как хочешь.</p>
 <p><code>.mypy.ini</code> для настройки валидации типов.</p>
 <pre><code class="language-ini">[mypy]
 strict = True
@@ -1014,6 +1048,7 @@ __all__ = [
 <span data-ty></span>
 </div>
 
+<p>Теперь ты знаешь как создавать шедевры.</p>
 <h1 id="cli-">Создание CLI-приложения<a class="headerlink" href="#cli-" title="Permanent link">&para;</a></h1>
 <p>А что если я хочу cli-приложение?
 Ты не представляешь насколько это просто.</p>
