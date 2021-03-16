@@ -578,9 +578,9 @@
                 
                 
                 <h1 id="how-to-start-a-project">How to start a project<a class="headerlink" href="#how-to-start-a-project" title="Permanent link">&para;</a></h1>
-<p>You have several options. For example you can store a bunch of <code>.py</code> files in repo on github and be fully satisfied, or you can add the <code>setup.py</code> script and publish it on pypi, but the best option as I can see is to start and develop your project with poetry.</p>
+<p>You have several options. For example, you can store a bunch of <code>.py</code> files in a repo on the Github and be fully satisfied, or you can add the <code>setup.py</code> script and publish it on the PyPI, but the best option as I can see is to start and develop your project with poetry.</p>
 <p>Why?</p>
-<p><code>Poetry</code> has many features. I'm here to tell you about them, and how to use it and what to do.</p>
+<p><code>Poetry</code> has many features. I'm here to tell you about them, and how to use them, and what to do.</p>
 <p>Let's create a project with poetry.</p>
 <p></p>
 <div class="termy" data-termynal>
@@ -590,7 +590,7 @@
 <span data-ty></span>
 </div>
 
-<p>This command generates project with the following structure:</p>
+<p>This command generates a project with the following structure:</p>
 <pre><code>new_proj
 ├── new_proj
 │   └── __init__.py
@@ -600,7 +600,7 @@
     ├── __init__.py
     └── test_new_proj.py
 </code></pre>
-<p>It's our brand new project with several stubs. There is nothing unusual. All the code you want to write will be placed in a directory with the same name as the project. <code>README.rst</code> is the default README. <code>pyproject.toml</code> contains meta-data about project, such as dependencies, description, extra installation options and more. You can read about <code>pyproject.toml</code> <a href="https://python-poetry.org/docs/pyproject/">here</a>.</p>
+<p>It's our brand new project with several stubs. There is nothing unusual. All the code you want to write will be placed in a directory with the same name as the project. <code>README.rst</code> is the default README. <code>pyproject.toml</code> contains meta-data about the project, such as dependencies, description, extra installation options, and more. You can read about <code>pyproject.toml</code> <a href="https://python-poetry.org/docs/pyproject/">here</a>.</p>
 <h2 id="how-to-deal-with-poetry">How to deal with poetry<a class="headerlink" href="#how-to-deal-with-poetry" title="Permanent link">&para;</a></h2>
 <p>All the information you need you can find in official documentation poetry. I'll tell you about basic stuff here.</p>
 <h3 id="dependency-management">Dependency management<a class="headerlink" href="#dependency-management" title="Permanent link">&para;</a></h3>
@@ -611,7 +611,7 @@
 <span data-ty></span>
 </div>
 
-<p>This command finds the last convinient version of the dependency and writes it to the <code>pyproject.toml</code> and <code>poetry.lock</code>.</p>
+<p>This command finds the last convenient version of the dependency and writes it to the <code>pyproject.toml</code> and <code>poetry.lock</code>.</p>
 <p>To add dependency only for development, such as linters or formatters,
 you can add the <code>--dev</code> flag.</p>
 <p></p>
@@ -646,10 +646,10 @@ you can add the <code>--dev</code> flag.</p>
 </div>
 
 <h3 id="running-commands">Running commands<a class="headerlink" href="#running-commands" title="Permanent link">&para;</a></h3>
-<p>With virtual environment you need to write something like this, to enter the shell:</p>
+<p>In a virtual environment you need to write something like this, to enter the shell:</p>
 <pre><code class="language-bash">source venv/bin/activate
 </code></pre>
-<p>But with poetry it's much easier. It creates and manages virtual envs on it's own. To run a single command you can call <code>run</code>. </p>
+<p>But with poetry, it's much easier. It creates and manages virtual environments on its own. To run a single command you can call <code>run</code>. </p>
 <p>E.G.:</p>
 <p></p>
 <div class="termy" data-termynal>
@@ -672,7 +672,7 @@ you can add the <code>--dev</code> flag.</p>
 <span data-ty></span>
 </div>
 
-<p>For executing multiple commands within the shell you can enter interactive shell session with <code>poetry shell</code>. It's similar to virtualenv's <code>source venv/bin/activate</code>.</p>
+<p>For executing multiple commands within the shell you can enter an interactive shell session with <code>poetry shell</code>. It's similar to virtualenv's <code>source venv/bin/activate</code>.</p>
 <p></p>
 <div class="termy" data-termynal>
 <span data-ty="input">poetry shell</span>
@@ -686,7 +686,7 @@ you can add the <code>--dev</code> flag.</p>
 </div>
 
 <h3 id="versioning">Versioning<a class="headerlink" href="#versioning" title="Permanent link">&para;</a></h3>
-<p>With poetry you don't need to change package versions manually.</p>
+<p>With poetry, you don't need to change package versions manually.</p>
 <p>The Poetry has something for you.</p>
 <p></p>
 <div class="termy" data-termynal>
@@ -704,7 +704,7 @@ you can add the <code>--dev</code> flag.</p>
 </div>
 
 <h2 id="pyprojecttoml">pyproject.toml<a class="headerlink" href="#pyprojecttoml" title="Permanent link">&para;</a></h2>
-<p>As mentioned before this file contains package's meta-information.</p>
+<p>As mentioned before this file contains the package's meta-information.</p>
 <p>Example of <code>pyproject.toml</code></p>
 <pre><code class="language-toml">[tool.poetry]
 name = &quot;new_proj&quot;
@@ -732,10 +732,10 @@ build-backend = &quot;poetry.core.masonry.api&quot;
 <span data-ty></span>
 </div>
 
-<p>This command creates virtual environment and installs dependencies from the <code>pyproject.toml</code> file. If you want install dependencies only for runtime you can add <code>--no-dev</code>.</p>
+<p>This command creates a virtual environment and installs dependencies from the <code>pyproject.toml</code> file. If you want to install dependencies only for the runtime you can add <code>--no-dev</code>.</p>
 <h2 id="packaging-and-publishing-on-pypi">Packaging and publishing on pypi<a class="headerlink" href="#packaging-and-publishing-on-pypi" title="Permanent link">&para;</a></h2>
 <p>It's really simple. </p>
-<p>Let's add a function in the project.</p>
+<p>Let's add a function to the project.</p>
 <pre><code class="language-python"># new_proj/main.py
 def ab_problem(a: int, b: int) -&gt; int:
     return a + b
@@ -788,7 +788,7 @@ Let's check if everything works.</p>
 
 <p>More information you can find <a href="https://python-poetry.org/docs/cli/#publish">here</a>.</p>
 <h1 id="configuring-project">Configuring project<a class="headerlink" href="#configuring-project" title="Permanent link">&para;</a></h1>
-<p>Project without configuration is a bad thing. Let's configure development environment.</p>
+<p>A project without configuration is a bad thing. Let's configure the development environment.</p>
 <p></p>
 <div class="termy" data-termynal>
 <span data-ty="input">poetry add \</span>
@@ -805,7 +805,7 @@ Let's check if everything works.</p>
 </div>
 
 <p>Now we need to add configuration files for linters and formatters.
-This is my preffered configurations, you can change it as you wish.</p>
+This is my preferred configuration, you can change it as you wish.</p>
 <p><code>.mypy.ini</code> for types validation.</p>
 <pre><code class="language-ini">[mypy]
 strict = True
@@ -823,7 +823,7 @@ multi_line_output = 3
 include_trailing_comma = true
 use_parentheses = true
 </code></pre>
-<p><code>.flake8</code> - Linter configuration. Biggest part of the document is ignore statements for errors that's not really an errors.</p>
+<p><code>.flake8</code> - Linter configuration. The biggest part of the document is ignore statements for errors that are not errors.</p>
 <pre><code class="language-ini">[flake8]
 max-complexity = 6
 inline-quotes = double
@@ -978,7 +978,7 @@ repos:
         types: [ python ]
 </code></pre>
 <p>Don't forget to add <code>.gitignore</code>. You can find it <a href="https://github.com/github/gitignore/blob/master/Python.gitignore">here</a>.</p>
-<p>It' REALLY IMPORTANT for correct work of pre-commit.</p>
+<p>It' VERY IMPORTANT for correct work of pre-commit.</p>
 <p>Now we can install hooks.</p>
 <p></p>
 <div class="termy" data-termynal>
@@ -1002,8 +1002,8 @@ def test_ab() -&gt; None:
     &quot;&quot;&quot;AB problecm success case.&quot;&quot;&quot;
     assert ab_problem(1, 2) == 3
 </code></pre>
-<p>Add a description in <code>__init__</code> files.</p>
-<p><code>tests/__init__.py</code>:</p>
+<p>Add a description in <code>__init__</code> files.
+<code>tests/__init__.py</code>:</p>
 <pre><code class="language-python">&quot;&quot;&quot;Tests for new_proj.&quot;&quot;&quot;
 </code></pre>
 <p><code>new_proj/__init__.py</code>:</p>
@@ -1050,7 +1050,7 @@ __all__ = [
 <p>Now you know how to create a masterpiece.</p>
 <h1 id="creating-cli-tool">Creating CLI tool<a class="headerlink" href="#creating-cli-tool" title="Permanent link">&para;</a></h1>
 <p>What if I want to create a CLI-tool?
-It easier than you think.</p>
+It is easier than you think.</p>
 <p>Let's modify our main file.</p>
 <pre><code class="language-python">import argparse
 
@@ -1120,7 +1120,7 @@ ab_solver = &quot;new_proj.main:main&quot;
 <span data-ty></span>
 </div>
 
-<p>If you publish your project in <code>pypi</code> or anywhere else. Users who install your program will get it as the cli-tool.</p>
+<p>If you publish your project in <code>PyPi</code> or anywhere else, users who install your program get it as the CLI-tool.</p>
                 
               
               
