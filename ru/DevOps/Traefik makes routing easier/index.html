@@ -477,15 +477,15 @@
                 
                 <h1 id="traefik-">Traefik - роутинг просто<a class="headerlink" href="#traefik-" title="Permanent link">&para;</a></h1>
 <p><img align="right" alt="image" src="/images/traefik_imgs/logo.png" /></p>
-<p>Сегодня я бы хотел рассказать о такой клёвой штуке как <a href="https://traefik.io/traefik/">Traefik</a>. Не так давно я перевёл все сервисы своего сервера на traefik и это буквально сделало жизнь проще. Сегодня я расскажу вам зачем он нужен, как его настроить и покажу на примере как именно он помогает. По факту это nginx на стероидах, в плане конфигурации, потому что в traefik за тебя сделано гораздо больше.</p>
+<p>Сегодня я бы хотел рассказать о такой клёвой штуке, как <a href="https://traefik.io/traefik/">Traefik</a>. Не так давно я перевёл все сервисы своего сервера на traefik и это буквально сделало жизнь проще. Сегодня я расскажу вам зачем он нужен, как его настроить, и покажу на примере, как именно он помогает. По факту, это nginx на стероидах, в плане конфигурации, потому что в traefik за тебя сделано гораздо больше</p>
 <h1 id="traefik">Что такое traefik<a class="headerlink" href="#traefik" title="Permanent link">&para;</a></h1>
-<p>Traefik это система, которая позволяет настроить маппинг между доменными именами и конкретными приложениями. Допустим у вас есть контейнер frontend-приложения, которое вы хотели бы разместить на домене <code>myapp.com</code> и также у вас есть контейнер backend-приложения, которое вы бы хотели разместить на домене <code>api.mayapp.com</code>. <a href="https://traefik.io/traefik/">Traefik</a> поможет вам это сделать без лишних файлов конфигурации.</p>
+<p>Traefik - это система, которая позволяет настроить маппинг между доменными именами и конкретными приложениями. Допустим, у вас есть контейнер frontend-приложения, которое вы хотели бы разместить на домене <code>myapp.com</code>, и также у вас есть контейнер backend-приложения, которое вы бы хотели разместить на домене <code>api.mayapp.com</code>. <a href="https://traefik.io/traefik/">Traefik</a> поможет вам это сделать без лишних файлов конфигурации.</p>
 <h2 id="_1">Сравнение с другими инструментами<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p>Если бы вы решили сделать это через <a href="https://www.nginx.com/">Nginx</a>, то вы бы создали новые файлы конфигураций под каждый домен, в папочке с конфигурациями для всех доменов, положили куда-нибудь сертификат от домена <code>*myapp.com</code> и подключали бы его вручную в каждом файле доменов. А, если бы вам надо было увеличить количество контейнеров отдельного приложения, вы бы указывали сервера в директиве <code>upstream</code> и перечисляли там адреса инстансов приложения вручную.</p>
+<p>Если бы вы решили сделать это через <a href="https://www.nginx.com/">Nginx</a>, то вы бы создали новые файлы конфигураций под каждый домен, в папочке с конфигурациями для всех доменов, положили куда-нибудь сертификат от домена <code>*myapp.com</code> и подключали бы его вручную в каждом файле доменов. А если бы вам надо было увеличить количество контейнеров отдельного приложения, вы бы указывали сервера в директиве <code>upstream</code> и перечисляли там адреса инстансов приложения вручную.</p>
 <p>Любители <a href="https://httpd.apache.org/">Apache HTTP Server</a> на этом моменте обычно берут дробовик и разносят себе голову хорошим зарядом дроби.</p>
-<p>А господа, которые используют <a href="https://traefik.io/traefik/">Traefik</a>, просто дописывают лейблы контейнеру в docker-compose.yml и идут дальше дегустировать вино.</p>
+<p>А господа, которые используют <a href="https://traefik.io/traefik/">Traefik</a>, просто дописывают лейблы контейнеру в <code>docker-compose.yml</code> и идут дальше дегустировать вино.</p>
 <div class="admonition note">
-<p>Если же ваше приложение построено на вебсокетах, то тут уже фанаты Nginx тянутся за дробовиком. Ну а ценителей traefik ничего не меняется, ведь в нём встроена поддержка HTTP/2.0.</p>
+<p>Если же ваше приложение построено на вебсокетах, то тут уже фанаты Nginx тянутся за дробовиком. Ну а для ценителей traefik ничего не меняется, ведь в нём встроена поддержка HTTP/2.0.</p>
 </div>
 <p><img align="center" alt="image" src="/images/traefik_imgs/nginx_comparasion.png" /></p>
 <h2 id="_2">Архитектура<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
@@ -500,21 +500,21 @@
 <li>services</li>
 </ul>
 <h3 id="entrypoint">Entrypoint<a class="headerlink" href="#entrypoint" title="Permanent link">&para;</a></h3>
-<p>Являются основными слушателями входящих соединений. Через них проходит весь трафик. Если попробовать объяснить в двух словах, думаю, что "Порт, на который должно придти входящее соединение" вполне себе неплохое объяснение. В данном туториале я создам 2 entrypoint, которые будут слушать на http и https.</p>
+<p>Являются основными слушателями входящих соединений. Через них проходит весь трафик. Если попробовать объяснить в двух словах: "Порт, на который должно прийти входящее соединение", - вполне себе неплохое объяснение. В данном туториале я создам 2 <code>entrypoint</code>, которые будут слушать на http и https.</p>
 <h3 id="routers-rules-middlewares">Routers, Rules и Middlewares<a class="headerlink" href="#routers-rules-middlewares" title="Permanent link">&para;</a></h3>
-<p>Роутер связующее звено между entrypoint и сервисом, куда нужно направить трафик. Роутер хранит в себе информацию куда направить входящий трафик и 
-правила, по которым можно определить пускать ли трафик дальше.</p>
-<p>Rules это и есть те самые правила, которые определяют через какой роутер пустить трафик.
-Допустим у вас в конфиге есть следующие правила:</p>
+<p>Роутер - связующее звено между <code>entrypoint</code> и сервисом, куда нужно направить трафик. Роутер хранит в себе информацию, куда направить входящий трафик, и 
+правила, по которым можно определить, пускать ли трафик дальше.</p>
+<p>Rules - это и есть те самые правила, которые определяют, через какой роутер пустить трафик.
+Допустим, у вас в конфиге есть следующие правила:</p>
 <pre><code>Host(`myapp.com`) &amp;&amp; (PathPrefix(`/api`) || PathPrefix(`/memes`))
 </code></pre>
 <p>Это можно читать как "Этот роутер пустит в моё приложение, если запрос пришёл на хост <code>myapp.com</code> и путь запроса начинается с <code>/api</code> или <code>/memes</code>"</p>
-<p>Довольно просто не так ли?</p>
-<p>Ну, а middlewares это некоторая логика, что нужно выполнить с запросом до того, как он попадёт в ваше приложение. В этой статье я не буду рассказывать про существующие middlewares, тут потребуется самостоятельное ознакомление с <a href="https://doc.traefik.io/traefik/middlewares/overview/">документацией</a>.</p>
+<p>Довольно просто, не так ли?</p>
+<p>Ну а middlewares - это некоторая логика, что нужно выполнить с запросом до того, как он попадёт в ваше приложение. В этой статье я не буду рассказывать про существующие <code>middlewares</code>, тут потребуется самостоятельное ознакомление с <a href="https://doc.traefik.io/traefik/middlewares/overview/">документацией</a>.</p>
 <h1 id="_3">Конфигурация<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h1>
 <div class="admonition note">
 <p>В данной статье я буду использовать Docker для конфигурации traefik. 
-Вы, конечно же, можете использовать локально установленную версию, всё будет работать как часы.</p>
+Вы, конечно же, можете использовать локально установленную версию, всё будет работать, как часы.</p>
 </div>
 <p>Для нашего основного traefik на сервере мы создадим небольшой docker-compose.yml, файл конфига и папочку с сертификатами.
 Структура будет следующая:</p>
@@ -584,7 +584,7 @@ networks:
 </tr>
 <tr>
 <td><code>providers.docker.network=traefik-shared</code></td>
-<td>Сеть докера по которой будет выполнятся подключение к контейнерам.</td>
+<td>Сеть докера, по которой будет выполнятся подключение к контейнерам.</td>
 </tr>
 <tr>
 <td><code>providers.file.directory=/etc/traefik/dynamic</code></td>
@@ -615,7 +615,7 @@ mv _wildcard.local-key.pem local.key
 mv _wildcard.local.pem local.pem
 </code></pre>
 <p>И помещаю это в папочку <code>certs</code> рядом с <code>docker-compose.yml</code>.</p>
-<p>После того, как я создал все нужные сертефикаты для всех доменов их надо указать в файле <code>config.toml</code> в папочке traefik.</p>
+<p>После того как я создал все нужные сертефикаты для всех доменов, их надо указать в файле <code>config.toml</code> в папочке traefik.</p>
 <p>Вот пример config.toml.</p>
 <pre><code class="language-toml">[tls.options]
   [tls.options.default]
@@ -720,7 +720,7 @@ networks:
 <div class="admonition note">
 <p>Файл yarn.lock генерируется командой <code>yarn install</code>. Если у вас не установлен <code>yarn</code>, то ничего страшного. Просто это будет занимать чуть больше времени на сборку образа.</p>
 </div>
-<p>Как вы видите приложение слушает на порт <code>3000</code> и отвечает свим hostname и количеством обработанных запросов. А в docker-compose.yml в отличие от обычного проекта появились labels.</p>
+<p>Как вы видите, приложение слушает на порт <code>3000</code> и отвечает свим hostname и количеством обработанных запросов. А в docker-compose.yml, в отличие от обычного проекта, появились labels.</p>
 <table>
 <thead>
 <tr>
@@ -743,7 +743,7 @@ networks:
 </tr>
 <tr>
 <td><code>traefik.http.routers.&lt;router&gt;.service=&lt;service&gt;</code></td>
-<td>Сервис связанный с роутером test_node</td>
+<td>Сервис, связанный с роутером test_node</td>
 </tr>
 <tr>
 <td><code>traefik.http.services.&lt;service&gt;.loadbalancer.server.port=3000</code></td>
@@ -760,7 +760,7 @@ networks:
 <p>В объявлении labels могут быть использованы переменные среды. Например: 
 <code>traefik.http.routers.test_node.rule=Host(`${APP_HOST}`)</code></p>
 </div>
-<p>Также можно видеть, что я подключил контейнер к сети, которую мы указывали в контейнере traefik. Здесь ока указана как external.</p>
+<p>Также можно видеть, что я подключил контейнер к сети, которую мы указывали в контейнере traefik. Здесь она помечена как external.</p>
 <p>Теперь мы можем спокойно запустить наш сервис. Для этого воспользуемся следующей командой:</p>
 <pre><code class="language-bash">docker-compose up --build --scale server=3
 </code></pre>
@@ -775,9 +775,9 @@ networks:
 
 <p>Результат должен быть примерно таким:</p>
 <p><a href="/images/traefik_imgs/curls.gif"><img alt="GIF" src="/images/traefik_imgs/curls.gif" /></a></p>
-<p>Как вы видите traefik балансирует между контейнерами за нас. И я считаю, что это победа.</p>
+<p>Как вы видите, traefik балансирует между контейнерами за нас. И я считаю, что это - победа.</p>
 <h2 id="tls">Подключение TLS и сертификатов<a class="headerlink" href="#tls" title="Permanent link">&para;</a></h2>
-<p>Тут всё не на много сложнее. Давайте немного поменяем лейблы нашего контейнера.</p>
+<p>Тут всё не намного сложнее. Давайте немного поменяем лейблы нашего контейнера.</p>
 <pre><code class="language-yaml">services:
   server:
     labels:
@@ -788,13 +788,13 @@ networks:
       - traefik.http.routers.test_node.service=node_test
       - traefik.http.services.node_test.loadbalancer.server.port=3000
 </code></pre>
-<p>Как вы видите я поменял entrypoints на <code>https</code>. Как вы можете помнить это entrypoint, который слушает на 443 порт. И также я включил поддержку tls ключом <code>traefik.http.routers.&lt;router&gt;.tls=true</code></p>
+<p>Как вы видите, я поменял entrypoints на <code>https</code>. Как вы можете помнить, это entrypoint, который слушает на 443 порт. И также я включил поддержку tls лейблом <code>traefik.http.routers.&lt;router&gt;.tls=true</code></p>
 <p>На данном этапе вам потребуется добавить свой хост в <code>/etc/hosts</code>, если вы используете нормальную систему. Но если вы всё же на windows, то вам потребуется добавить правило в <code>C:\Windows\System32\drivers\etc\hosts</code>.</p>
 <p>И добавляем в конец файла запись:</p>
 <pre><code>127.0.0.1   test_node.local
 </code></pre>
 <p>И также вам потребуется cертификат на этот домен. 
-для этого:</p>
+Для этого:</p>
 <ol>
 <li>Создадим сертификат через <code>mkcert</code>, как упоминалось ранее;</li>
 <li>Поместим ключ и сертификат в папку certs;</li>
@@ -809,7 +809,7 @@ networks:
 </div>
 
 <h2 id="_5">Добавление локальных сервисов не из докера<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p>Все те флаги, которые мы указываем в labels вы также можете указать в файле конфигурации рядом с docker-compose.yml указав конкретный ip адрес.</p>
+<p>Все те флаги, которые мы указываем в labels, вы также можете указать в файле конфигурации рядом с docker-compose.yml, указав конкретный ip адрес.</p>
 <p>Например:</p>
 <pre><code class="language-toml">[http.routers]
 # Define a connection between requests and services
@@ -826,8 +826,8 @@ networks:
        url = &quot;http://192.168.1.89:8100&quot;
 </code></pre>
 <h1 id="dns">Создание локального DNS<a class="headerlink" href="#dns" title="Permanent link">&para;</a></h1>
-<p>В данном пункте я бы хотел рассказать как настроить свой DNS-сервер, чтобы ваши домены были доступны всем устройствам в локальной сети. Для этого я буду использовать dnsmasq. Пользователям винды он недоступен, поэтому советую развернуть маленький домашний сервер на линуксе. </p>
-<p>Для этого установите <code>dnsmasq</code> и найдите и раскомментируйте или добавьте следующие строчки в файл <code>/etc/dnsmasq.conf</code>:</p>
+<p>В данном пункте я бы хотел рассказать, как настроить свой DNS-сервер, чтобы ваши домены были доступны всем устройствам в локальной сети. Для этого я буду использовать dnsmasq. Пользователям винды он недоступен, поэтому советую развернуть маленький домашний сервер на линуксе. </p>
+<p>Для этого установите <code>dnsmasq</code> и найдите и раскомментируйте, либо добавьте следующие строчки в файл <code>/etc/dnsmasq.conf</code>:</p>
 <pre><code class="language-conf"># Never forward plain names (without a dot or domain part)
 domain-needed
 # Never forward addresses in the non-routed address spaces.
@@ -836,7 +836,7 @@ address=/.local/192.168.1.89
 address=/.&lt;other_domain&gt;/&lt;your_local_ip&gt;
 </code></pre>
 <p>У меня traefik развернут на хосте <code>192.168.1.89</code>. У вас ip может отличаться.
-Чтобы это узнать посмотрите свой ip через роутер или выполните <code>ip addr</code>.</p>
+Чтобы это узнать, посмотрите свой ip через роутер или выполните <code>ip addr</code>.</p>
 <p>Вообще, <code>dnsmasq</code> парсит файл <code>/etc/hosts</code> и вы можете туда добавлять записи, типа:</p>
 <pre><code>192.168.1.1 mydomain.local
 </code></pre>
@@ -846,13 +846,13 @@ address=/.&lt;other_domain&gt;/&lt;your_local_ip&gt;
 sudo systemctl start dnsmasq.service
 </code></pre>
 <p>Теперь пойдите в настройки вашего роутера и найдите DNS-сервера. Добавьте туда ваш ip. Также не забудьте сделать локальный ip вашего устройства статичным.</p>
-<p>Для примера в роутерах keenetic это можно сделать, зарегистрировав устройство в меню 'Список устройств' и нажав на галочку 'Постоянный IP-адрес'.</p>
+<p>Для примера, в роутерах keenetic это можно сделать, зарегистрировав устройство в меню 'Список устройств' и нажав на галочку 'Постоянный IP-адрес'.</p>
 <p>И добавьте свой DNS-сервер в список DNS серверов вашего роутера.
 <img alt="Keenetic interface" src="/images/traefik_imgs/keenetic_dns.png" /></p>
-<p>Готово. Вы можете попробовать зайти на свой домен с другого устройства в локальной сети и это должно работать.</p>
+<p>Готово. Вы можете попробовать зайти на свой домен с другого устройства в локальной сети, и это должно работать.</p>
 <h1 id="traefik_1">Мониторинг работы traefik<a class="headerlink" href="#traefik_1" title="Permanent link">&para;</a></h1>
-<p>Вообще traefik имеет WEB интерфейс для отслеживания его работы.
-Для того, чтобы подключить его. Давайте поменяем конфиг traefik.</p>
+<p>Вообще, traefik имеет WEB интерфейс для отслеживания его работы.
+Для того чтобы подключить его, давайте поменяем <code>docker-compose.yml</code>.</p>
 <pre><code class="language-yaml">services:
   traefik-proxy:
     # The official v2.0 Traefik docker image
@@ -870,7 +870,7 @@ sudo systemctl start dnsmasq.service
       ...
 </code></pre>
 <p>Я добавил ключ <code>--api.dashboard=true</code> и лейблы для роута до <code>traefik</code>.
-Замечу, что service определён заранее это <code>api@internal</code> просто используйте его.</p>
+Замечу, service определён заранее - это <code>api@internal</code>. Укажите его в <code>traefik.http.routers.&lt;router_name&gt;.service</code>.</p>
 <p>Теперь вы можете зайти на <code>traefik.local</code> через свой браузер и увидеть конфигурацию traefik.</p>
 <p><a href="/images/traefik_imgs/traefik_web.png"><img alt="GIF" src="/images/traefik_imgs/traefik_web.png" /></a></p>
                 
