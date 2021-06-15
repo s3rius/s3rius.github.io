@@ -757,6 +757,8 @@ networks:
 Они сами создаются, когда вы их указываете.</p>
 <p>Название сервиса и роутера могут совпадать.</p>
 <p>Обратите внимание на косые кавычки при указании хоста! Это обязательно.</p>
+<p>В объявлении labels могут быть использованы переменные среды. Например: 
+<code>traefik.http.routers.test_node.rule=Host(`${APP_HOST}`)</code></p>
 </div>
 <p>Также можно видеть, что я подключил контейнер к сети, которую мы указывали в контейнере traefik. Здесь ока указана как external.</p>
 <p>Теперь мы можем спокойно запустить наш сервис. Для этого воспользуемся следующей командой:</p>
@@ -772,7 +774,7 @@ networks:
 </div>
 
 <p>Результат должен быть примерно таким:</p>
-<p><img alt="GIF" src="/images/traefik_imgs/curls.gif" /></p>
+<p><a href="/images/traefik_imgs/curls.gif"><img alt="GIF" src="/images/traefik_imgs/curls.gif" /></a></p>
 <p>Как вы видите traefik балансирует между контейнерами за нас. И я считаю, что это победа.</p>
 <h2 id="tls">Подключение TLS и сертификатов<a class="headerlink" href="#tls" title="Permanent link">&para;</a></h2>
 <p>Тут всё не на много сложнее. Давайте немного поменяем лейблы нашего контейнера.</p>
@@ -805,6 +807,72 @@ networks:
 <span data-ty>{&quot;request_num&quot;:0,&quot;host&quot;:&quot;7417ac8fda92&quot;}</span>
 <span data-ty></span>
 </div>
+
+<h2 id="_5">Добавление локальных сервисов не из докера<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>Все те флаги, которые мы указываем в labels вы также можете указать в файле конфигурации рядом с docker-compose.yml указав конкретный ip адрес.</p>
+<p>Например:</p>
+<pre><code class="language-toml">[http.routers]
+# Define a connection between requests and services
+  [http.routers.&lt;router_name&gt;]
+    rule = &quot;Host(`my_app.local`)&quot;
+    entrypoints = &quot;https&quot;
+    service = &quot;&lt;service_name&gt;&quot;
+    [http.routers.&lt;router_name&gt;.tls]
+
+[http.services]
+  # Define how to reach an existing service on our infrastructure
+  [http.services.&lt;service_name&gt;.loadBalancer]
+     [[http.services.&lt;service_name&gt;.loadBalancer.servers]]
+       url = &quot;http://192.168.1.89:8100&quot;
+</code></pre>
+<h1 id="dns">Создание локального DNS<a class="headerlink" href="#dns" title="Permanent link">&para;</a></h1>
+<p>В данном пункте я бы хотел рассказать как настроить свой DNS-сервер, чтобы ваши домены были доступны всем устройствам в локальной сети. Для этого я буду использовать dnsmasq. Пользователям винды он недоступен, поэтому советую развернуть маленький домашний сервер на линуксе. </p>
+<p>Для этого установите <code>dnsmasq</code> и найдите и раскомментируйте или добавьте следующие строчки в файл <code>/etc/dnsmasq.conf</code>:</p>
+<pre><code class="language-conf"># Never forward plain names (without a dot or domain part)
+domain-needed
+# Never forward addresses in the non-routed address spaces.
+bogus-priv
+address=/.local/192.168.1.89
+address=/.&lt;other_domain&gt;/&lt;your_local_ip&gt;
+</code></pre>
+<p>У меня traefik развернут на хосте <code>192.168.1.89</code>. У вас ip может отличаться.
+Чтобы это узнать посмотрите свой ip через роутер или выполните <code>ip addr</code>.</p>
+<p>Вообще, <code>dnsmasq</code> парсит файл <code>/etc/hosts</code> и вы можете туда добавлять записи, типа:</p>
+<pre><code>192.168.1.1 mydomain.local
+</code></pre>
+<p>Но так как я указал <code>address</code>, то это необязательно. <code>dnsmasq</code> и без явного указания поддоменов должен будет работать отлично.</p>
+<p>Запустите <code>dnsmasq</code> в режиме сревиса:</p>
+<pre><code class="language-bash">sudo systemctl enable dnsmasq.service
+sudo systemctl start dnsmasq.service
+</code></pre>
+<p>Теперь пойдите в настройки вашего роутера и найдите DNS-сервера. Добавьте туда ваш ip. Также не забудьте сделать локальный ip вашего устройства статичным.</p>
+<p>Для примера в роутерах keenetic это можно сделать, зарегистрировав устройство в меню 'Список устройств' и нажав на галочку 'Постоянный IP-адрес'.</p>
+<p>И добавьте свой DNS-сервер в список DNS серверов вашего роутера.
+<img alt="Keenetic interface" src="/images/traefik_imgs/keenetic_dns.png" /></p>
+<p>Готово. Вы можете попробовать зайти на свой домен с другого устройства в локальной сети и это должно работать.</p>
+<h1 id="traefik_1">Мониторинг работы traefik<a class="headerlink" href="#traefik_1" title="Permanent link">&para;</a></h1>
+<p>Вообще traefik имеет WEB интерфейс для отслеживания его работы.
+Для того, чтобы подключить его. Давайте поменяем конфиг traefik.</p>
+<pre><code class="language-yaml">services:
+  traefik-proxy:
+    # The official v2.0 Traefik docker image
+    image: traefik:v2.4.8
+    container_name: traefik_main
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.traefik_router.rule=Host(`traefik.local`)
+      - traefik.http.routers.traefik_router.service=api@internal
+      - traefik.http.routers.traefik_router.entrypoints=https
+      - traefik.http.routers.traefik_router.tls=true
+
+    command: 
+      - --api.dashboard=true
+      ...
+</code></pre>
+<p>Я добавил ключ <code>--api.dashboard=true</code> и лейблы для роута до <code>traefik</code>.
+Замечу, что service определён заранее это <code>api@internal</code> просто используйте его.</p>
+<p>Теперь вы можете зайти на <code>traefik.local</code> через свой браузер и увидеть конфигурацию traefik.</p>
+<p><a href="/images/traefik_imgs/traefik_web.png"><img alt="GIF" src="/images/traefik_imgs/traefik_web.png" /></a></p>
                 
               
               
